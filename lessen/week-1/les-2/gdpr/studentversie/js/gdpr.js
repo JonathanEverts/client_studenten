@@ -5,7 +5,7 @@ class GDPR {
         this.showContent();
         this.bindEvents();
 
-        if(this.cookieStatus() !== 'accept') this.showGDPR();
+        if (this.cookieStatus() !== 'accept' && this.cookieStatus() !== 'reject') this.showGDPR();
     }
 
     bindEvents() {
@@ -17,10 +17,14 @@ class GDPR {
             this.hideGDPR();
         });
 
-
-//student uitwerking
-
-
+        //student uitwerking
+        let buttonReject = document.querySelector('.gdpr-consent__button--reject');
+        buttonReject.addEventListener('click', () => {
+            this.cookieStatus('reject');
+            this.showStatus();
+            this.showContent();
+            this.hideGDPR();
+        });
     }
 
 
@@ -32,15 +36,15 @@ class GDPR {
 
     }
 
-    resetContent(){
+    resetContent() {
         const classes = [
             '.content-gdpr-accept',
-
-//student uitwerking
+            //student uitwerking
+            '.content-gdpr-reject',
 
             '.content-gdpr-not-chosen'];
 
-        for(const c of classes){
+        for (const c of classes) {
             document.querySelector(c).classList.add('hide');
             document.querySelector(c).classList.remove('show');
         }
@@ -52,23 +56,30 @@ class GDPR {
     }
 
     cookieStatus(status) {
-        if (status) localStorage.setItem('gdpr-consent-choice', status);
+        if (status) {
+            localStorage.setItem('gdpr-consent-choice', status);
 
-//student uitwerking
-
+            //student uitwerking
+            const date = new Date();
+            const metaData = {
+                datum: `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`,
+                tijd: `${date.getHours()}:${date.getMinutes()}`
+            }
+            localStorage.setItem('gdpr-consent-date', JSON.stringify(metaData));
+        }
         return localStorage.getItem('gdpr-consent-choice');
     }
 
 
-//student uitwerking
+    //student uitwerking
 
 
-    hideGDPR(){
+    hideGDPR() {
         document.querySelector(`.gdpr-consent`).classList.add('hide');
         document.querySelector(`.gdpr-consent`).classList.remove('show');
     }
 
-    showGDPR(){
+    showGDPR() {
         document.querySelector(`.gdpr-consent`).classList.add('show');
     }
 }

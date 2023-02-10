@@ -48,6 +48,10 @@
     border: 1px solid gray;
 }
 
+.gdpr-consent__button--reject:hover {
+    background-color: #c5e3c5;
+}
+
 .hide{
     display: none;
 }

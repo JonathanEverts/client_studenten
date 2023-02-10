@@ -27,6 +27,19 @@
     animation: glow 3s ease alternate;
 }
 
+.personalia-content__category-title {
+    color: rgba(39, 140, 39, 0.96);
+}
+
+.personalia-content__element {
+    display: flex;
+    flex-direction: column;
+}
+
+.personalia-content__element-eigenschap {
+    text-align: center;
+}
+
 .profile-content {
     padding: 15px;
     font-size: 20px;
@@ -108,3 +121,6 @@
 
 /*student uitwerking*/
 
+ul {
+    list-style-type: none;
+}
