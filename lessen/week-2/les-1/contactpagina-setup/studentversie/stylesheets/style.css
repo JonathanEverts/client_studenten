@@ -26,3 +26,7 @@
 @media only screen and (min-width: 800px) {
 
 }
+
+.form-contactpagina__buttons{
+    display: flex;
+    justify-content: space-between;}
